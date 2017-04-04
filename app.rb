@@ -44,10 +44,20 @@ module My
             employee.pictures unless employee.nil?
           end
 
-          desc 'Add picture'
+          desc 'Add image'
+          params do
+            requires :name, type: String, desc: 'Employee name'
+          end
           put do
-            employee = Employee.find(params.id)
+            employee  = Employee.find(params.id)
+            picture   = employee.pictures.where(name: params.name).first
 
+            return employee.pictures unless picture.nil?
+
+            employee.pictures << Picture.new(name: params.name)
+            employee.save
+
+            employee.pictures
           end
         end
       end
