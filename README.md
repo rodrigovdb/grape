@@ -41,5 +41,15 @@ $  curl -X GET -s http://127.0.0.1:9393/api/employees/1/pictures
 # Add a picture to an employee
 
 ```
-$  curl -X PUT -s http://127.0.0.1:9393/api/employees/1/pictures -d 'name=Picture1'
+$ curl \
+  -F "name=My image" \
+  -F "image=@/home/rodrigovdb/sandbox/polymorphism/public/test.jpg" \
+  http://127.0.0.1:9393/api/employees/1/pictures
 ```
+
+# Update a picture
+
+```
+$  curl -X PUT -s http://127.0.0.1:9393/api/employees/1/pictures/1 -d 'name=Picture1'
+```
+

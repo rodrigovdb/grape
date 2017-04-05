@@ -1,4 +1,3 @@
-
 module My
   class API < Grape::API
     version 'v1', using: :header, vendor: 'twitter'
@@ -46,18 +45,28 @@ module My
 
           desc 'Add image'
           params do
-            requires :name, type: String, desc: 'Employee name'
+            requires :name,   type: String, desc: 'Employee name'
+            requires :image,  type: Rack::Multipart::UploadedFile,
+                              desc: 'Image file',
+                              documentation: { param_type: 'formData' }
           end
-          put do
+          post do
             employee  = Employee.find(params.id)
-            picture   = employee.pictures.where(name: params.name).first
 
-            return employee.pictures unless picture.nil?
-
-            employee.pictures << Picture.new(name: params.name)
+            employee.pictures << Picture.new(name: params.name, image: params.image.tempfile)
             employee.save
 
             employee.pictures
+          end
+
+          route_param :id do
+            desc 'Update'
+            params do
+              requires :name, type: String, desc: 'Image name'
+            end
+            put do
+              { foo: :bar, id: params.id }
+            end
           end
         end
       end

@@ -2,6 +2,7 @@ require 'yaml'
 require 'grape'
 require 'active_record'
 require 'sqlite3'
+require 'pry'
 
 require_relative 'app'
 

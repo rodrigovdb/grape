@@ -13,7 +13,8 @@ FROM ruby:2.4
 #RUN apt-get install sqlite3 libsqlite3-dev
 RUN apt-get update && apt-get install -y \
 		sqlite3 \
-		libsqlite3-dev
+		libsqlite3-dev \
+    imagemagick
 
 ENV APP_PATH=/app
 WORKDIR $APP_PATH

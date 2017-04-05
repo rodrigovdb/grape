@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404121853) do
+ActiveRecord::Schema.define(version: 20170405101508) do
 
   create_table "employees", force: :cascade do |t|
     t.string "name"
@@ -22,6 +22,10 @@ ActiveRecord::Schema.define(version: 20170404121853) do
     t.integer  "imageable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
   end
 
