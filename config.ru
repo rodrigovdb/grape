@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'lib/loader'
 
-run My::API
+run Vdb::API

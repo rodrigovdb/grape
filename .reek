@@ -1,0 +1,12 @@
+exclude_paths:
+  - vendor
+  - spec
+  - tmp
+  - db/migrate
+
+IrresponsibleModule:
+  enabled: false
+
+LongParameterList:
+  max_params: 4
+

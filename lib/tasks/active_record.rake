@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'yaml'
 require 'active_record'
 
@@ -17,7 +19,7 @@ end
 root = APPLICATION_PATH
 DatabaseTasks.env = ENV['RACK_ENV'] || 'development'
 
-DatabaseTasks.database_configuration = YAML.load(File.read('config/database.yml'))
+DatabaseTasks.database_configuration = YAML.safe_load(File.read('config/database.yml'))
 DatabaseTasks.db_dir = File.join root, 'db'
 DatabaseTasks.fixtures_path = File.join root, 'test/fixtures'
 DatabaseTasks.migrations_paths = [File.join(root, 'db/migrate')]
@@ -40,18 +42,17 @@ namespace :g do
     path = File.expand_path("#{APPLICATION_PATH}/db/migrate/#{timestamp}_#{name}.rb", __FILE__)
     migration_class = name.split('_').map(&:capitalize).join
 
-=begin
-    File.open(path, 'w') do |file|
-      file.write <<-EOF.strip_heredoc
-        class #{migration_class} < ActiveRecord::Migration
-          def self.up
-          end
-          def self.down
-          end
-        end
-      EOF
-    end
-=end
+    # File.open(path, 'w') do |file|
+    #   file.write <<-EOF.strip_heredoc
+    #     class #{migration_class} < ActiveRecord::Migration
+    #       def self.up
+    #       end
+    #       def self.down
+    #       end
+    #     end
+    #   EOF
+    # end
+
     File.open(path, 'w') do |file|
       file.write <<-EOF.strip_heredoc
         class #{migration_class} < ActiveRecord::Migration

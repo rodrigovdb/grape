@@ -13,7 +13,9 @@
 ActiveRecord::Schema.define(version: 20170405101508) do
 
   create_table "employees", force: :cascade do |t|
-    t.string "name"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "pictures", force: :cascade do |t|
