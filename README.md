@@ -1,8 +1,8 @@
 # Why?
 
-Use [Polymorphism with ActiveRecord](http://guides.rubyonrails.org/association_basics.html#polymorphic-associations) using models like the link.
+Use [Polymorphism with ActiveRecord](http://guides.rubyonrails.org/association_basics.html#polymorphic-associations). Models defined like ActiveRecord documentaiton.
 
-Also, add [Paperclip](https://github.com/thoughtbot/paperclip) to project and allow some endpoint receive an attached file.
+Also, add [Paperclip](https://github.com/thoughtbot/paperclip) to project and allow POST to resources `/pictures` upload images.
 
 # Running
 
