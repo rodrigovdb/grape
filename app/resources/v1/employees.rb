@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Dir["#{APPLICATION_PATH}/app/resources/employees/*.rb"].each do |file| require file end
+Dir["#{APPLICATION_PATH}/app/resources/v1/employees/*.rb"].each do |file| require file end
 
 module Vdb
   class Employees < Grape::API

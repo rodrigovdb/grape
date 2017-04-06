@@ -6,6 +6,7 @@ ruby '2.4.1'
 
 gem 'activerecord', require: 'active_record'
 gem 'grape'
+gem 'grape-active_model_serializers'
 gem 'shotgun'
 gem 'sqlite3'
 gem 'unicorn'
