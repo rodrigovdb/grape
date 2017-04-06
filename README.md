@@ -44,7 +44,9 @@ $ curl -X PUT -H "Content-Type: application/json" -s http://127.0.0.1:9393/api/v
 
 ## Delete
 
+```
 $ curl -X DELETE -s http://127.0.0.1:9393/api/v1/employees/:id
+```
 
 ## Employee Pictures
 
@@ -101,7 +103,9 @@ $ curl -X PUT -H "Content-Type: application/json" -s http://127.0.0.1:9393/api/v
 
 ## Delete
 
+```
 $ curl -X DELETE -s http://127.0.0.1:9393/api/v1/products/:id
+```
 
 ## Product Pictures
 
