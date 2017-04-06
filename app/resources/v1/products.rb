@@ -23,7 +23,7 @@ module Vdb
       route_param :id do
         desc 'Get a single product'
         get do
-          Product.find(params.id)
+          Product.find_by_public_id(params.id)
         end
 
         desc 'Update'
@@ -31,7 +31,7 @@ module Vdb
           requires :name, type: String, desc: 'Product name'
         end
         put do
-          product = Product.find(params.id)
+          product = Product.find_by_public_id(params.id)
           product.update(name: params.name)
 
           product
@@ -39,7 +39,7 @@ module Vdb
 
         desc 'Delete'
         delete do
-          product = Product.find(params.id)
+          product = Product.find_by_public_id(params.id)
           product.destroy
 
           product

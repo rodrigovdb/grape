@@ -6,7 +6,7 @@ module Vdb
   class V1 < Grape::API
     version   'v1',   using: :path, vendor: 'rodrigovdb'
     format    :json
-    # formatter :json,  Grape::Formatter::ActiveModelSerializers
+    formatter :json,  Grape::Formatter::ActiveModelSerializers
 
     mount Employees
     mount Products

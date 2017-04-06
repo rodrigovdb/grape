@@ -19,7 +19,7 @@ end
 root = APPLICATION_PATH
 DatabaseTasks.env = ENV['RACK_ENV'] || 'development'
 
-DatabaseTasks.database_configuration = YAML.safe_load(File.read('config/database.yml'))
+DatabaseTasks.database_configuration = YAML.load(File.read('config/database.yml'))
 DatabaseTasks.db_dir = File.join root, 'db'
 DatabaseTasks.fixtures_path = File.join root, 'test/fixtures'
 DatabaseTasks.migrations_paths = [File.join(root, 'db/migrate')]

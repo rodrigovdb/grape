@@ -5,7 +5,7 @@ module Vdb
     resource :pictures do
       desc 'Product pictures'
       get do
-        product = Product.find(params.id)
+        product = Product.find_by_public_id(params.id)
 
         product&.pictures
       end
@@ -18,7 +18,7 @@ module Vdb
                           documentation: { param_type: 'formData' }
       end
       post do
-        product = Product.find(params.id)
+        product = Product.find_by_public_id(params.id)
 
         product.pictures << Picture.new(name: params.name, image: params.image.tempfile)
         product.save
@@ -29,8 +29,8 @@ module Vdb
       route_param :picture_id do
         desc 'Get a picture'
         get do
-          product = Product.find(params.id)
-          product.pictures.find(params.picture_id)
+          product = Product.find_by_public_id(params.id)
+          product.pictures.find_by_public_id(params.picture_id)
         end
 
         desc 'Update'
@@ -38,16 +38,16 @@ module Vdb
           requires :name, type: String, desc: 'Image name'
         end
         put do
-          product = Product.find(params.id)
-          picture = product.pictures.find(params.picture_id)
+          product = Product.find_by_public_id(params.id)
+          picture = product.pictures.find_by_public_id(params.picture_id)
           picture.update(name: params.name)
 
           picture
         end
 
         delete do
-          product = Product.find(params.id)
-          picture = product.pictures.find(params.picture_id)
+          product = Product.find_by_public_id(params.id)
+          picture = product.pictures.find_by_public_id(params.picture_id)
           picture.destroy
         end
       end

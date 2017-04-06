@@ -23,7 +23,7 @@ module Vdb
       route_param :id do
         desc 'Get a single employee'
         get do
-          Employee.find(params.id)
+          Employee.find_by_public_id(params.id)
         end
 
         desc 'Update'
@@ -31,7 +31,7 @@ module Vdb
           requires :name, type: String, desc: 'Employee name'
         end
         put do
-          employee = Employee.find(params.id)
+          employee = Employee.find_by_public_id(params.id)
           employee.update(name: params.name)
 
           employee
@@ -39,7 +39,7 @@ module Vdb
 
         desc 'Delete'
         delete do
-          employee = Employee.find(params.id)
+          employee = Employee.find_by_public_id(params.id)
           employee.destroy
 
           employee
