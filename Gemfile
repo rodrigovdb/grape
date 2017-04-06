@@ -10,6 +10,7 @@ gem 'grape-active_model_serializers'
 gem 'shotgun'
 gem 'sqlite3'
 gem 'unicorn'
+gem 'rake'
 
 gem 'paperclip', '~> 5.0.0'
 
