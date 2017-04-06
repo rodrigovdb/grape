@@ -1,4 +1,4 @@
-include 'paperclip'
+require 'paperclip'
 
 class AddImageToPicture < ActiveRecord::Migration
   include Paperclip::Schema
