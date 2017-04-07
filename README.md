@@ -4,6 +4,8 @@ Use [Polymorphism with ActiveRecord](http://guides.rubyonrails.org/association_b
 
 Also, add [Paperclip](https://github.com/thoughtbot/paperclip) to project and allow POST to resources `/pictures` upload images.
 
+Also, provides an authentication engine with access token.
+
 # Running
 
 ## Build
@@ -18,34 +20,42 @@ docker build -t grape .
 $ docker run -p 8080:8080 grape
 ```
 
+# Authenticate
+
+## Getting a token
+
+```
+$ curl -X POST -s http://127.0.0.1:9393/api/auth -d "public_key=7e766fffb587afd6bfd73dd73cce4330&password=MyPassword12"
+```
+
 # Employees
 
 ## Get all
 
 ```
-$ curl -X GET -s http://127.0.0.1:9393/api/v1/employees
+$ curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -X GET -s http://127.0.0.1:9393/api/v1/employees
 ```
 
 ## Create
 ```
-$ curl -X POST -H "Content-Type: application/json" -s http://127.0.0.1:9393/api/v1/employees -d '{"name":"My name"}'
+$ curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -X POST -H "Content-Type: application/json" -s http://127.0.0.1:9393/api/v1/employees -d '{"name":"My name"}'
 ```
 
 ## Get one
 ```
-$ curl -X GET -s http:127.0.0.1:9393/employees/1
+$ curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -X GET -s http:127.0.0.1:9393/employees/1
 ```
 
 ## Update
 
 ```
-$ curl -X PUT -H "Content-Type: application/json" -s http://127.0.0.1:9393/api/v1/employees/:id -d '{"name":"Jeremias"}'
+$ curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -X PUT -H "Content-Type: application/json" -s http://127.0.0.1:9393/api/v1/employees/:id -d '{"name":"Jeremias"}'
 ```
 
 ## Delete
 
 ```
-$ curl -X DELETE -s http://127.0.0.1:9393/api/v1/employees/:id
+$ curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -X DELETE -s http://127.0.0.1:9393/api/v1/employees/:id
 ```
 
 ## Employee Pictures
@@ -53,13 +63,13 @@ $ curl -X DELETE -s http://127.0.0.1:9393/api/v1/employees/:id
 ### Get all pictures from an employee
 
 ```
-$  curl -X GET -s http://127.0.0.1:9393/api/v1/employees/:id/pictures
+$  curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -X GET -s http://127.0.0.1:9393/api/v1/employees/:id/pictures
 ```
 
 ### Add a picture to an employee
 
 ```
-$ curl \
+$ curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 \
   -F "name=My image" \
   -F "image=@/path/to/image.jpg" \
   http://127.0.0.1:9393/api/v1/employees/:id/pictures
@@ -68,13 +78,13 @@ $ curl \
 ### Update a picture
 
 ```
-$  curl -X PUT -s http://127.0.0.1:9393/api/v1/employees/:id/pictures/:picture_id -d 'name=Picture1'
+$  curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -X PUT -s http://127.0.0.1:9393/api/v1/employees/:id/pictures/:picture_id -d 'name=Picture1'
 ```
 
 ### Delete a picture
 
 ```
-$ curl -x DELETE -s http://127.0.0.1:9393/api/v1/employees/:id/pictures/:picture_id
+$ curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -x DELETE -s http://127.0.0.1:9393/api/v1/employees/:id/pictures/:picture_id
 ```
 
 # Products
@@ -82,29 +92,29 @@ $ curl -x DELETE -s http://127.0.0.1:9393/api/v1/employees/:id/pictures/:picture
 ## Get all
 
 ```
-$ curl -X GET -s http://127.0.0.1:9393/api/v1/products
+$ curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -X GET -s http://127.0.0.1:9393/api/v1/products
 ```
 
 ## Create
 ```
-$ curl -X POST -H "Content-Type: application/json" -s http://127.0.0.1:9393/api/v1/products -d '{"name":"My name"}'
+$ curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -X POST -H "Content-Type: application/json" -s http://127.0.0.1:9393/api/v1/products -d '{"name":"My name"}'
 ```
 
 ## Get one
 ```
-$ curl -X GET -s http:127.0.0.1:9393/products/1
+$ curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -X GET -s http:127.0.0.1:9393/products/1
 ```
 
 ## Update
 
 ```
-$ curl -X PUT -H "Content-Type: application/json" -s http://127.0.0.1:9393/api/v1/products/:id -d '{"name":"Jeremias"}'
+$ curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -X PUT -H "Content-Type: application/json" -s http://127.0.0.1:9393/api/v1/products/:id -d '{"name":"Jeremias"}'
 ```
 
 ## Delete
 
 ```
-$ curl -X DELETE -s http://127.0.0.1:9393/api/v1/products/:id
+$ curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -X DELETE -s http://127.0.0.1:9393/api/v1/products/:id
 ```
 
 ## Product Pictures
@@ -112,13 +122,13 @@ $ curl -X DELETE -s http://127.0.0.1:9393/api/v1/products/:id
 ### Get all pictures from an product
 
 ```
-$  curl -X GET -s http://127.0.0.1:9393/api/v1/products/:id/pictures
+$  curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -X GET -s http://127.0.0.1:9393/api/v1/products/:id/pictures
 ```
 
 ### Add a picture to an product
 
 ```
-$ curl \
+$ curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 \
   -F "name=My image" \
   -F "image=@/path/to/image.jpg" \
   http://127.0.0.1:9393/api/v1/products/:id/pictures
@@ -127,11 +137,11 @@ $ curl \
 ### Update a picture
 
 ```
-$  curl -X PUT -s http://127.0.0.1:9393/api/v1/products/:id/pictures/:picture_id -d 'name=Picture1'
+$  curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -X PUT -s http://127.0.0.1:9393/api/v1/products/:id/pictures/:picture_id -d 'name=Picture1'
 ```
 
 ### Delete a picture
 
 ```
-$ curl -x DELETE -s http://127.0.0.1:9393/api/v1/products/:id/pictures/:picture_id
+$ curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -x DELETE -s http://127.0.0.1:9393/api/v1/products/:id/pictures/:picture_id
 ```
