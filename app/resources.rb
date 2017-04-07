@@ -6,6 +6,9 @@ module Vdb
   class API < Grape::API
     prefix    :api
 
+    helpers AuthHelper
+
+    mount Auth
     mount V1
   end
 end

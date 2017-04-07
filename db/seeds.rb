@@ -1,5 +1,9 @@
 require './lib/loader'
 
+if User.count == 0
+  User.create(email: 'rodrigovdb@gmail.com', password: 'MyPassword12')
+end
+
 if Employee.count == 0
   3.times do |i|
     e = Employee.new(name: "Colaborador #{i}")
@@ -8,10 +12,10 @@ if Employee.count == 0
   end
 end
 
-#if Product.count == 0
+if Product.count == 0
   6.times do |i|
     p = Product.new(name: "Produto #{i}")
     p.pictures << Picture.new(name: "Imagem #{i}", image: File.new('./samples/test.jpg'))
     p.save
   end
-#end
+end

@@ -8,6 +8,10 @@ module Vdb
     format    :json
     formatter :json,  Grape::Formatter::ActiveModelSerializers
 
+    before do
+      check_authentication
+    end
+
     mount Employees
     mount Products
   end

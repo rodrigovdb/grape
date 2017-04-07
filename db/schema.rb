@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405101508) do
+ActiveRecord::Schema.define(version: 20170407102446) do
 
   create_table "employees", force: :cascade do |t|
     t.string   "name"
@@ -38,6 +38,19 @@ ActiveRecord::Schema.define(version: 20170405101508) do
     t.string   "public_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "public_id",          limit: 12
+    t.string   "email",                         null: false
+    t.string   "password_digest",               null: false
+    t.string   "public_key",                    null: false
+    t.string   "access_token"
+    t.datetime "token_generated_at"
+    t.datetime "last_login"
+    t.integer  "login_count"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
 end

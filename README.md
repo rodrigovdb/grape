@@ -18,12 +18,20 @@ docker build -t grape .
 $ docker run -p 8080:8080 grape
 ```
 
+# Authenticate
+
+## Getting a token
+
+```
+$ curl -X POST -s http://127.0.0.1:9393/api/auth -d "public_key=7e766fffb587afd6bfd73dd73cce4330&password=MyPassword12"
+```
+
 # Employees
 
 ## Get all
 
 ```
-$ curl -X GET -s http://127.0.0.1:9393/api/v1/employees
+$ curl -H XAuthToken:90f228e9d9f9ab7b4d996c0cd5c74ca6 -X GET -s http://127.0.0.1:9393/api/v1/employees
 ```
 
 ## Create
